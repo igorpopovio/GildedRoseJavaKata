@@ -36,4 +36,49 @@ public class BackstagePassesTests extends ItemContractTests {
 
         assertEquals(22, item.quality);
     }
+
+    @Test
+    public void increasesWith2InQuality6DaysBeforeExpiration() {
+        Item item = createItemWithSellInAndQuality(6, 20);
+
+        item = updateQualityFor(item);
+
+        assertEquals(22, item.quality);
+    }
+
+    @Test
+    public void increasesWith3InQuality5DaysBeforeExpiration() {
+        Item item = createItemWithSellInAndQuality(5, 20);
+
+        item = updateQualityFor(item);
+
+        assertEquals(23, item.quality);
+    }
+
+    @Test
+    public void increasesWith3InQuality4DaysBeforeExpiration() {
+        Item item = createItemWithSellInAndQuality(4, 20);
+
+        item = updateQualityFor(item);
+
+        assertEquals(23, item.quality);
+    }
+
+    @Test
+    public void qualityDropsToZeroOnExpirationDay() {
+        Item item = createItemWithSellInAndQuality(0, 20);
+
+        item = updateQualityFor(item);
+
+        assertEquals(0, item.quality);
+    }
+
+    @Test
+    public void qualityStaysZeroAfterExpiration() {
+        Item item = createItemWithSellInAndQuality(-1, 0);
+
+        item = updateQualityFor(item);
+
+        assertEquals(0, item.quality);
+    }
 }
