@@ -1,5 +1,7 @@
-package com.gildedrose;
+package com.gildedrose.item;
 
+import com.gildedrose.Item;
+import com.gildedrose.common.ItemContractTests;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

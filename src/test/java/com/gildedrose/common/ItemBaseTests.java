@@ -1,4 +1,7 @@
-package com.gildedrose;
+package com.gildedrose.common;
+
+import com.gildedrose.GildedRose;
+import com.gildedrose.Item;
 
 public abstract class ItemBaseTests {
     public int getDefaultItemQuality() {

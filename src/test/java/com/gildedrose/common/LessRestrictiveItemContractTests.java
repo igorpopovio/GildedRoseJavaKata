@@ -1,5 +1,6 @@
-package com.gildedrose;
+package com.gildedrose.common;
 
+import com.gildedrose.Item;
 import org.junit.Ignore;
 import org.junit.Test;
 
