@@ -5,17 +5,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class NormalItemTests extends ItemContractTests {
-    public static String DEFAULT_ITEM_NAME = "Normal Item";
-    public static int DEFAULT_ITEM_QUALITY = 10;
-
     @Override
-    public Item createItemWithSellIn(int sellIn) {
-        return new Item(DEFAULT_ITEM_NAME, sellIn, DEFAULT_ITEM_QUALITY);
-    }
-
-    @Override
-    public Item createItemWithSellInAndQuality(int sellIn, int quality) {
-        return new Item(DEFAULT_ITEM_NAME, sellIn, quality);
+    public String getDefaultItemName() {
+        return "Normal Item";
     }
 
     @Test

@@ -56,9 +56,21 @@ public abstract class ItemContractTests {
         createItemWithSellInAndQuality(10, 51);
     }
 
-    public abstract Item createItemWithSellInAndQuality(int sellIn, int quality);
+    public Item createItemWithSellIn(int sellIn) {
+        return new Item(getDefaultItemName(), sellIn, getDefaultItemQuality());
+    }
 
-    public abstract Item createItemWithSellIn(int sellIn);
+
+    public Item createItemWithSellInAndQuality(int sellIn, int quality) {
+        return new Item(getDefaultItemName(), sellIn, quality);
+    }
+
+    public int getDefaultItemQuality() {
+        return 10;
+    }
+
+
+    public abstract String getDefaultItemName();
 
     public Item updateQualityFor(Item item) {
         Item[] items = new Item[]{item};
