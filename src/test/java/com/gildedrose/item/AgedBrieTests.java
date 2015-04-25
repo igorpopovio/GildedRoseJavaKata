@@ -38,4 +38,13 @@ public class AgedBrieTests extends ItemContractTests {
 
         assertEquals(2, item.quality);
     }
+
+    @Test
+    public void increasesInQualityOnlyUpTo50AfterExpiration() {
+        Item item = createItemWithSellInAndQuality(0, 49);
+
+        item = updateQualityFor(item);
+
+        assertEquals(50, item.quality);
+    }
 }
