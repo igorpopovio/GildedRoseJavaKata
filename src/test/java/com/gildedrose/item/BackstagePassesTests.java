@@ -83,4 +83,13 @@ public class BackstagePassesTests extends ItemContractTests {
 
         assertEquals(0, item.quality);
     }
+
+    @Test
+    public void increasesInQualityOnlyUpTo50When10DaysBeforeExpiration() {
+        Item item = createItemWithSellInAndQuality(10, 49);
+
+        item = updateQualityFor(item);
+
+        assertEquals(50, item.quality);
+    }
 }
