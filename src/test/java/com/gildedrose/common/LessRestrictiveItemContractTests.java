@@ -1,30 +1,9 @@
 package com.gildedrose.common;
 
-import com.gildedrose.Item;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
-
 public abstract class LessRestrictiveItemContractTests extends ItemBaseTests {
-    @Test
-    public void qualityCannotBeNegativeEvenAfterExpiration() throws Exception {
-        Item item = createItemWithSellInAndQuality(0, 0);
-
-        item = updateQualityFor(item);
-
-        assertTrue(item.quality >= 0);
-    }
-
-    @Test
-    public void qualityCannotBeMoreThan50() throws Exception {
-        Item item = createItemWithSellInAndQuality(10, 50);
-
-        item = updateQualityFor(item);
-
-        assertTrue(item.quality <= 50);
-    }
-
     @Test
     @Ignore("TODO: Should fail, but doesn't. Fix later!")
     public void cannotBeCreatedWithNegativeQuality() {
