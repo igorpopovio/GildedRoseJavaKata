@@ -4,8 +4,6 @@ import com.gildedrose.Item;
 import com.gildedrose.common.LessRestrictiveItemContractTests;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 public class SulfurasTests extends LessRestrictiveItemContractTests {
     @Override
     public String getDefaultItemName() {
@@ -18,7 +16,7 @@ public class SulfurasTests extends LessRestrictiveItemContractTests {
 
         item = updateQualityFor(item);
 
-        assertEquals(20, item.quality);
+        // assertEquals(20, item.quality);
     }
 
     @Test
@@ -27,7 +25,7 @@ public class SulfurasTests extends LessRestrictiveItemContractTests {
 
         item = updateQualityFor(item);
 
-        assertEquals(20, item.quality);
+        // assertEquals(20, item.quality);
     }
 
     // FIXME: comment test to drop the mutation test coverage while keeping branch coverage to 100%
@@ -37,6 +35,6 @@ public class SulfurasTests extends LessRestrictiveItemContractTests {
 
         item = updateQualityFor(item);
 
-        assertEquals(10, item.sellIn);
+        // assertEquals(10, item.sellIn);
     }
 }

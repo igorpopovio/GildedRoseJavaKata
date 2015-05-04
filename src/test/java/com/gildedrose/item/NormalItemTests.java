@@ -4,8 +4,6 @@ import com.gildedrose.Item;
 import com.gildedrose.common.ItemContractTests;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 public class NormalItemTests extends ItemContractTests {
     @Override
     public String getDefaultItemName() {
@@ -18,7 +16,7 @@ public class NormalItemTests extends ItemContractTests {
 
         item = updateQualityFor(item);
 
-        assertEquals(19, item.quality);
+        // assertEquals(19, item.quality);
     }
 
     @Test
@@ -27,7 +25,7 @@ public class NormalItemTests extends ItemContractTests {
 
         item = updateQualityFor(item);
 
-        assertEquals(0, item.quality);
+        // assertEquals(0, item.quality);
     }
 
     @Test
@@ -36,7 +34,7 @@ public class NormalItemTests extends ItemContractTests {
 
         item = updateQualityFor(item);
 
-        assertEquals(0, item.quality);
+        // assertEquals(0, item.quality);
     }
 
     // FIXME: comment test to drop the mutation test coverage while keeping branch coverage to 100%
@@ -46,7 +44,7 @@ public class NormalItemTests extends ItemContractTests {
 
         item = updateQualityFor(item);
 
-        assertEquals(0, item.quality);
+        // assertEquals(0, item.quality);
     }
 
     // FIXME: comment test to drop the mutation test coverage while keeping branch coverage to 100%
@@ -56,6 +54,6 @@ public class NormalItemTests extends ItemContractTests {
 
         item = updateQualityFor(item);
 
-        assertEquals(1, item.quality);
+        // assertEquals(1, item.quality);
     }
 }
