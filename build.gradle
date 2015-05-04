@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'jacoco'
+    id 'application'
+    id 'info.solidsoft.pitest' version '1.1.4'
+}
+
+group = 'com.gildedrose'
+mainClassName = "${project.group}.Main"
+defaultTasks 'idea', 'build'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'pl.pragmatists:JUnitParams:1.0.4'
+}
+
+tasks.jacocoTestReport.dependsOn 'test'
+
+jacoco {
+    applyTo run
+}
+
+task applicationCodeCoverageReport(type: JacocoReport, dependsOn: run) {
+    executionData run
+    sourceSets sourceSets.main
+}
+
+// check options from:
+// http://pitest.org/quickstart/commandline/
+pitest {
+    pitestVersion = '1.1.5'
+
+    // mutate everything in the package - done by default
+    targetClasses = ["${project.group}.*"]
+
+    // mutate just one class, but you have to also specify the targetTests
+    // targetTests = ["${project.group}.*"]
+    // targetClasses = ["${project.group}.GildedRose"]
+
+    timestampedReports = false
+
+    // the default set doesn't include all mutators
+    mutators = ["ALL"]
+}
+
