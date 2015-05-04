@@ -16,7 +16,6 @@ repositories {
 
 dependencies {
     testCompile 'junit:junit:4.12'
-    testCompile 'pl.pragmatists:JUnitParams:1.0.4'
 }
 
 tasks.jacocoTestReport.dependsOn 'test'
@@ -36,11 +35,11 @@ pitest {
     pitestVersion = '1.1.5'
 
     // mutate everything in the package - done by default
-    targetClasses = ["${project.group}.*"]
+    // targetClasses = ["${project.group}.*"]
 
     // mutate just one class, but you have to also specify the targetTests
-    // targetTests = ["${project.group}.*"]
-    // targetClasses = ["${project.group}.GildedRose"]
+    targetTests = ["${project.group}.AllTests"]
+    targetClasses = ["${project.group}.GildedRose"]
 
     timestampedReports = false
 
