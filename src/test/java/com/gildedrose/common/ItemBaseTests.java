@@ -2,7 +2,10 @@ package com.gildedrose.common;
 
 import com.gildedrose.GildedRose;
 import com.gildedrose.Item;
+import junitparams.JUnitParamsRunner;
+import org.junit.runner.RunWith;
 
+@RunWith(JUnitParamsRunner.class)
 public abstract class ItemBaseTests {
     public int getDefaultItemQuality() {
         return 10;

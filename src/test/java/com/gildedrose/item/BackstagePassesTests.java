@@ -2,6 +2,7 @@ package com.gildedrose.item;
 
 import com.gildedrose.Item;
 import com.gildedrose.common.ItemContractTests;
+import junitparams.Parameters;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -13,92 +14,27 @@ public class BackstagePassesTests extends ItemContractTests {
     }
 
     @Test
-    public void increasesInQualityTheOlderItGets() {
-        Item item = createItemWithSellInAndQuality(11, 20);
+    @Parameters({
+            "11, 20, 21, increases in quality the older it gets",
+            "10, 20, 22, increases with 2 in quality 10 days before expiration",
+            " 9, 20, 22, increases with 2 in quality  9 days before expiration",
+            " 6, 20, 22, increases with 2 in quality  6 days before expiration",
+            " 5, 20, 23, increases with 3 in quality  5 days before expiration",
+            " 4, 20, 23, increases with 3 in quality  4 days before expiration",
+            "10, 49, 50, increases up to 50 in quality 10 days before expiration",
+            " 5, 49, 50, increases up to 50 in quality  5 days before expiration",
+            " 0, 20,  0, quality drops to 0 on expiration day",
+            "-1,  0,  0, quality stays 0 after expiration day",
+    })
+    public void qualityUpdatesCorrectly(
+            int sellIn,
+            int initialQuality,
+            int expectedQuality,
+            String message) {
+        Item item = createItemWithSellInAndQuality(sellIn, initialQuality);
 
         item = updateQualityFor(item);
 
-        assertEquals(21, item.quality);
-    }
-
-    @Test
-    public void increasesWith2InQuality10DaysBeforeExpiration() {
-        Item item = createItemWithSellInAndQuality(10, 20);
-
-        item = updateQualityFor(item);
-
-        assertEquals(22, item.quality);
-    }
-
-    @Test
-    public void increasesWith2InQuality9DaysBeforeExpiration() {
-        Item item = createItemWithSellInAndQuality(9, 20);
-
-        item = updateQualityFor(item);
-
-        assertEquals(22, item.quality);
-    }
-
-    @Test
-    public void increasesWith2InQuality6DaysBeforeExpiration() {
-        Item item = createItemWithSellInAndQuality(6, 20);
-
-        item = updateQualityFor(item);
-
-        assertEquals(22, item.quality);
-    }
-
-    @Test
-    public void increasesWith3InQuality5DaysBeforeExpiration() {
-        Item item = createItemWithSellInAndQuality(5, 20);
-
-        item = updateQualityFor(item);
-
-        assertEquals(23, item.quality);
-    }
-
-    @Test
-    public void increasesWith3InQuality4DaysBeforeExpiration() {
-        Item item = createItemWithSellInAndQuality(4, 20);
-
-        item = updateQualityFor(item);
-
-        assertEquals(23, item.quality);
-    }
-
-    @Test
-    public void qualityDropsToZeroOnExpirationDay() {
-        Item item = createItemWithSellInAndQuality(0, 20);
-
-        item = updateQualityFor(item);
-
-        assertEquals(0, item.quality);
-    }
-
-    @Test
-    public void qualityStaysZeroAfterExpiration() {
-        Item item = createItemWithSellInAndQuality(-1, 0);
-
-        item = updateQualityFor(item);
-
-        assertEquals(0, item.quality);
-    }
-
-    @Test
-    public void increasesInQualityOnlyUpTo50When10DaysBeforeExpiration() {
-        Item item = createItemWithSellInAndQuality(10, 49);
-
-        item = updateQualityFor(item);
-
-        assertEquals(50, item.quality);
-    }
-
-    @Test
-    public void increasesInQualityOnlyUpTo50When5DaysBeforeExpiration() {
-        Item item = createItemWithSellInAndQuality(5, 49);
-
-        item = updateQualityFor(item);
-
-        assertEquals(50, item.quality);
+        assertEquals(message, expectedQuality, item.quality);
     }
 }

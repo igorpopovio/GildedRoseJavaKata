@@ -2,6 +2,7 @@ package com.gildedrose.item;
 
 import com.gildedrose.Item;
 import com.gildedrose.common.ItemContractTests;
+import junitparams.Parameters;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -13,38 +14,21 @@ public class AgedBrieTests extends ItemContractTests {
     }
 
     @Test
-    public void increasesInQualityTheOlderItGets() {
-        Item item = createItemWithSellInAndQuality(10, 20);
+    @Parameters({
+            "10, 20, 21, increases in quality the older it gets",
+            "10,  0,  1, increases in quality on the expiration day",
+            "-1,  0,  2, increases even more in quality after expiration",
+            " 0, 49, 50, increases in quality only up to 50 after expiration",
+    })
+    public void qualityUpdatesCorrectly(
+            int sellIn,
+            int initialQuality,
+            int expectedQuality,
+            String message) {
+        Item item = createItemWithSellInAndQuality(sellIn, initialQuality);
 
         item = updateQualityFor(item);
 
-        assertEquals(21, item.quality);
-    }
-
-    @Test
-    public void increasesInQualityOnExpirationDay() {
-        Item item = createItemWithSellInAndQuality(10, 0);
-
-        item = updateQualityFor(item);
-
-        assertEquals(1, item.quality);
-    }
-
-    @Test
-    public void increasesEvenMoreInQualityAfterExpiration() {
-        Item item = createItemWithSellInAndQuality(-1, 0);
-
-        item = updateQualityFor(item);
-
-        assertEquals(2, item.quality);
-    }
-
-    @Test
-    public void increasesInQualityOnlyUpTo50AfterExpiration() {
-        Item item = createItemWithSellInAndQuality(0, 49);
-
-        item = updateQualityFor(item);
-
-        assertEquals(50, item.quality);
+        assertEquals(message, expectedQuality, item.quality);
     }
 }
