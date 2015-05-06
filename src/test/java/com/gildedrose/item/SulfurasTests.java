@@ -29,14 +29,4 @@ public class SulfurasTests extends LessRestrictiveItemContractTests {
 
         assertEquals(20, item.quality);
     }
-
-    // FIXME: comment test to drop the mutation test coverage while keeping branch coverage to 100%
-    @Test
-    public void neverHasToBeSold() {
-        Item item = createItemWithSellInAndQuality(10, 20);
-
-        item = updateQualityFor(item);
-
-        assertEquals(10, item.sellIn);
-    }
 }

@@ -38,24 +38,4 @@ public class NormalItemTests extends ItemContractTests {
 
         assertEquals(0, item.quality);
     }
-
-    // FIXME: comment test to drop the mutation test coverage while keeping branch coverage to 100%
-    @Test
-    public void qualityDegradesTwiceAsFastAfterExpiration() {
-        Item item = createItemWithSellInAndQuality(0, 2);
-
-        item = updateQualityFor(item);
-
-        assertEquals(0, item.quality);
-    }
-
-    // FIXME: comment test to drop the mutation test coverage while keeping branch coverage to 100%
-    @Test
-    public void qualityDegradesNormally1DayBeforeExpiration() {
-        Item item = createItemWithSellInAndQuality(1, 2);
-
-        item = updateQualityFor(item);
-
-        assertEquals(1, item.quality);
-    }
 }
